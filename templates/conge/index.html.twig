@@ -1,0 +1,15 @@
+{# templates/demande_conge/new.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande de congé{% endblock %}
+
+{% block body %}
+<br>
+
+<h1>Demande de congé</h1>
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    {#<button class="btn">Envoyer</button>#}
+{{ form_end(form) }}
+{% endblock %}

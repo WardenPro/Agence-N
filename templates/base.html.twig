@@ -3,14 +3,60 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+         <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href= "{{ asset('styles/nav.css') }}">
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
         {% endblock %}
 
         {% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+               <nav class="navbar navbar-expand-lg sticky-navbar">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <a class="navbar-brand" href="/index">
+                        <img src="{{ asset('/img/LOGO.webp') }}" width="35px">
+                    </a>
+
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/index">Home</a>
+                        </li>
+                        {% if is_granted('ROLE_COMPTA') or is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/note_frais">Note de frais</a>
+                        </li>
+                        {% endif %}
+                        {% if is_granted("ROLE_USER") %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/demande_conge">Demande de Congée</a>
+                        </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li class="nav-item">
+                                <a class="nav-link disabled" aria-disabled="true">Administrator</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                    <div class="me-5">
+                    </div>
+                        {% if is_granted("ROLE_USER") %}
+                            <a class="btn btn-outline-danger" style="margin-left:15px" href="/logout">Deconnexion</a>
+                        {% endif %}
+                        {% if not is_granted("ROLE_USER") %}
+                            <a class="btn btn-outline-success" style="margin-left:15px" href="/login">Login</a>
+                        {% endif %}
+                </div>
+            </div>
+        </nav>
+         {% block body %}
+        {% endblock %}
     </body>
 </html>
