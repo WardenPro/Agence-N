@@ -18,6 +18,8 @@ class UserType extends AbstractType
                 'choices' => [
                     'User' => 'ROLE_USER',
                     'Admin' => 'ROLE_ADMIN',
+                    'Compta'=> 'ROLE_COMPTA',
+                    'Rh'=> 'ROLE_RH',
                 ],
                 'multiple' => true, // Si vous permettez à l'utilisateur de sélectionner plusieurs rôles
                 'expanded' => true, // Si vous souhaitez afficher les choix sous forme de boutons radio ou de cases à cocher

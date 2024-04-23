@@ -2,10 +2,40 @@
 
 {% block title %}New User{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('syles/user/new.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+
+<form method="post" action="{{ path('app_user_new') }}" class="form">
+    <h3>Create new User</h3>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email">
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="Enter your password">
+
+    <button type="submit" class="button">Create</button>
+</form>
+
+<a href="{{ path('app_user_index') }}" class="btn btn-secondary mt-3">Back to List</a>
+{% endblock %}
+
+
+{#{% extends 'base.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
 {% block body %}
     <h1>Create new User</h1>
 
     {{ include('user/_form.html.twig') }}
 
     <a href="{{ path('app_user_index') }}">back to list</a>
-{% endblock %}
+{% endblock %}#}
