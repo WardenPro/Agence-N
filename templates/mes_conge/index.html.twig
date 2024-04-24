@@ -1,14 +1,40 @@
-{# templates/conges/mes_conges.html.twig #}
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Mes Congés{% endblock %}
 
 {% block body %}
-<h1>Mes Congés</h1>
-<ul>
-    {% for conge in app.user.demandesConge %}
-       <li>Motif du congé {{conge.motif}} Du {{ conge.datedebut|date("d/m/Y") }} au {{ conge.datefin|date("d/m/Y")}} status {{conge.status}}</li> 
-    {% endfor %}
-</ul>
+<div class="container">
+    <h1 class="my-4">Mes Congés</h1>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">N.</th>
+                    <th scope="col">Mois</th>
+                    <th scope="col">Motif</th>
+                    <th scope="col">Date de Début</th>
+                    <th scope="col">Date de Fin</th>
+                    <th scope="col">Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for conge in app.user.demandesConge %}
+                <tr>
+                    <td>{{ conge.id }}</td>
+                    <td>{{ conge.mois }}</td>
+                    <td>{{ conge.motif }}</td>
+                    <td>{{ conge.datedebut|date("d/m/Y") }}</td>
+                    <td>{{ conge.datefin|date("d/m/Y") }}</td>
+                    <td>{{ conge.status }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">Aucun congé trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Frais Index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="my-4">Frais index</h1>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Période</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for frai in frais %}
+                <tr>
+                    <td>{{ frai.id }}</td>
+                    <td>{{ frai.nom }}</td>
+                    <td>{{ frai.service }}</td>
+                    <td>{{ frai.periode ? frai.periode|date('Y-m-d') : '' }}</td>
+                    <td>{{ frai.status }}</td>
+                    <td>{{ frai.total }}</td>
+                    <td>
+                        <a href="{{ path('app_note_frais_show', {'id': frai.id}) }}" class="btn btn-primary btn-sm">Show</a>
+                        <a href="{{ path('app_note_frais_edit', {'id': frai.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="7" class="text-center">No records found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ path('app_note_frais_new') }}" class="btn btn-success">Create new</a>
+</div>
+{% endblock %}

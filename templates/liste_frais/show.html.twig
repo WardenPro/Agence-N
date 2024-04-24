@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ListeFrais{% endblock %}
+
+{% block body %}
+    <h1>ListeFrais</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ liste_frai.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ liste_frai.date ? liste_frai.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ liste_frai.description }}</td>
+            </tr>
+            <tr>
+                <th>Equipement</th>
+                <td>{{ liste_frai.equipement }}</td>
+            </tr>
+            <tr>
+                <th>Missions</th>
+                <td>{{ liste_frai.missions }}</td>
+            </tr>
+            <tr>
+                <th>Repas</th>
+                <td>{{ liste_frai.repas }}</td>
+            </tr>
+            <tr>
+                <th>Divers</th>
+                <td>{{ liste_frai.divers }}</td>
+            </tr>
+            <tr>
+                <th>TVA</th>
+                <td>{{ liste_frai.TVA }}</td>
+            </tr>
+            <tr>
+                <th>Debut_km</th>
+                <td>{{ liste_frai.debutKm }}</td>
+            </tr>
+            <tr>
+                <th>Fin_km</th>
+                <td>{{ liste_frai.finKm }}</td>
+            </tr>
+            <tr>
+                <th>Montant_total</th>
+                <td>{{ liste_frai.montantTotal }}</td>
+            </tr>
+            <tr>
+                <th>Forfait_kilometrique</th>
+                <td>{{ liste_frai.forfaitKilometrique }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_liste_frais_index') }}">back to list</a>
+
+    <a href="{{ path('app_liste_frais_edit', {'id': liste_frai.id}) }}">edit</a>
+
+    {{ include('liste_frais/_delete_form.html.twig') }}
+{% endblock %}

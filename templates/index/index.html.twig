@@ -5,20 +5,32 @@
 {% block body %}
     <h1 style="text-align: center; font-size: 3em; margin-top: 1em;">Agence N</h1>
     <p style="text-align: center; margin-bottom: 0.5em;">Traitement des notes de frais et des demandes de congés</p>
+
     
+    {% if is_granted("ROLE_USER") %}
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center text-md-left mt-md-5">
                 <h4>Note de frais</h4>
+                <a href="/note_frais">
                 <img src="/img/notedefrais.webp" alt="note">
+                </a>
             </div>
             <div class="col-md-6 text-center text-md-right mt-md-5">
-                <h4>Demande de congé</h4>
-                 <img src="styles/demandedeconge.png" alt="note">
-            </div>
-        </div>
-    </div>
+            <h4>Demande de congé</h4>
+            <a href="/demande_conge">
+            <img src="/img/demandedeconge.jpg" alt="note" width="450" height="370" style="margin-top: 0.9em;">
+    </a>
+</div>
+</div>
+</div>
+{% else %}
+        <a href="/login" style="text-decoration: none;">
+        <p style="text-align: center; color: red; font-size: 2.2em; font-weight: bold; margin-top: 5em;">Connectez-vous pour voir les informations</p>
+        </a>
+{% endif %}
 {% endblock %}
+
 
 
 
