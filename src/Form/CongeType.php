@@ -36,10 +36,10 @@ class CongeType extends AbstractType
             ->add('motif', ChoiceType::class, [
                 'choices'  => [
                     '-' => 'None',
-                    'Absence Maladie' => 'absence maladie',
-                    'Congée Payer' => 'congée payer',
-                    'Absence Congés Spéciaux' => 'absence congés spéciaux',
-                    'Congés non Payes' => 'congés non payes',
+                    'Absence Maladie' => 'Absence Maladie',
+                    'Congée Payer' => 'Congée payer',
+                    'Absence Congés Spéciaux' => 'Absence Congés Spéciaux',
+                    'Congés non Payes' => 'Congés non Payes',
                     // Autres motifs
                 ],
                 'attr' => ['class' => 'form-control']

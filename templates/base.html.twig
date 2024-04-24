@@ -32,16 +32,20 @@
                     </li>
                     {% if is_granted('ROLE_COMPTA') or is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
-                            <a class="nav-link" href="/note_frais">Note de frais</a>
+                            <a class="nav-link" href="/note/frais">Note de frais</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/liste/frais">Liste Note de frais</a>
                         </li>
                     {% endif %}
+                    {% if is_granted('ROLE_USER') %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="congeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Congées
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="congeDropdown">
                             {% if is_granted('ROLE_RH') or is_granted('ROLE_ADMIN') %}
-                                <li><a class="dropdown-item" href="/gestion_conge">Gestion Congés</a></li>
+                                <li><a class="dropdown-item" href="/choix_conge">Gestion Congés</a></li>
                             {% endif %}
                             {% if is_granted("ROLE_USER") %}
                                 <li><a class="dropdown-item" href="/mes_conges">Mes Congés</a></li>
@@ -49,6 +53,7 @@
                             {% endif %}
                         </ul>
                     </li>
+                    {% endif %}
                 </ul>
                 {% if is_granted('ROLE_ADMIN') %}
                     <ul class="navbar-nav">
