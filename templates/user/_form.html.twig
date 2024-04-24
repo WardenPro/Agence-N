@@ -1,5 +1,25 @@
 
-{{ form_start(form) }}
+{# new_user.twig #}
+
+<link rel="stylesheet" href="{{ asset('styles/form.css') }}">
+
+{% block body %}
+    <form method="post">
+ 
+        {{ form_start(form) }}
+            {% block h1 %}{% endblock %}
+        {{ form_widget(form) }}
+        <div class="bout">
+            <button type="submit" class="btn-specific">{{ button_label|default('Save') }}</button>
+        </div>
+        {{ form_end(form) }}
+    </form>
+{% endblock %}
+
+
+
+
+{#{{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{{ form_end(form) }}#}

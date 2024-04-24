@@ -1,3 +1,6 @@
 _security_logout:
     resource: security.route_loader.logout
     type: service
+mes_conge:
+    path: /mes_conge
+    controller: App\Controller\MesCongeController::index

@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
 .navbar {
   z-index: 99;
   width: 100%;
@@ -14,12 +16,12 @@
 }
 
 .nav-item:nth-child(1) .nav-link {
-  color: #ffffff; 
+  color: #ffffff;
 }
 
 .nav-item:nth-child(1) .nav-link:hover {
   color: #ffffff;
-  background-color: #3a3b3c; 
+  background-color: #3a3b3c;
 }
 
 .nav-link {
@@ -28,5 +30,5 @@
 
 .nav-link:hover {
   color: #ffffff;
-  background-color : #3a3b3c;
+  background-color: #3a3b3c;
 }

@@ -1,39 +1,38 @@
+{#
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit User{% endblock %}
+{% block title %}Edit Utilisateur{% endblock %}
 
-{% block body %}
-<div class="container">
-    <h1 class="my-4">Edit User</h1>
-
-    <div class="row">
-        <div class="col-md-6">
-            {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
-        </div>
+{% block body %} 
+    <div style="text-align: center; margin-top: 20px;">
+        <h1>Edit Utilisateur</h1>
+        {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
     </div>
+    <a href="{{ path('app_user_index') }}">back list</a>
 
-    <div class="mt-3">
-        <a href="{{ path('app_user_index') }}" class="btn btn-secondary">Back to list</a>
-    </div>
+    {{ include('user/_delete_form.html.twig') }}
+{% endblock %}
+#}
 
-    <div class="mt-3">
-        {{ include('user/_delete_form.html.twig') }}
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Utilisateur{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/new.css') }}">
+{% endblock %}
+
+{% block body %} 
+    <div style="text-align: center; margin-top: 20px;">
+        <h1>Edit Utilisateur</h1>
+        {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
     </div>
-</div>
+    <a href="{{ path('app_user_index') }}" class="btn-back">back list</a>
+
+    {{ include('user/_delete_form.html.twig') }}
 {% endblock %}
 
 
-
-{#{% extends 'base.html.twig' %}
-
-{% block title %}Edit User{% endblock %}
-
-{% block body %}
-    <h1>Edit User</h1>
-
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_user_index') }}">back to list</a>
-
-    {{ include('user/_delete_form.html.twig') }}
-{% endblock %}#}

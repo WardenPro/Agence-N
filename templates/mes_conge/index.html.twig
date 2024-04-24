@@ -1,0 +1,14 @@
+{# templates/conges/mes_conges.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Congés{% endblock %}
+
+{% block body %}
+<h1>Mes Congés</h1>
+<ul>
+    {% for conge in app.user.demandesConge %}
+       <li>Motif du congé {{conge.motif}} Du {{ conge.datedebut|date("d/m/Y") }} au {{ conge.datefin|date("d/m/Y")}} status {{conge.status}}</li> 
+    {% endfor %}
+</ul>
+{% endblock %}
