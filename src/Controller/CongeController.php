@@ -20,6 +20,7 @@ class CongeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $demande->setUser($this->getUser());
             $entityManager->persist($demande);
             $entityManager->flush();
 

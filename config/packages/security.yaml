@@ -34,6 +34,10 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        - { path: /user, roles: ROLE_ADMIN}
+        - { path: /note_frais, roles: [ROLE_ADMIN, ROLE_ADMIN, ROLE_USER]}
+        - { path: /mes_conges, roles: [ROLE_ADMIN, ROLE_USER, ROLE_COMPTA, ROLE_RH]}
+        - { path: /demande_conge, roles: [ROLE_ADMIN, ROLE_USER, ROLE_COMPTA, ROLE_RH]}
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 

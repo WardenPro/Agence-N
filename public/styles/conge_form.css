@@ -1,4 +1,4 @@
-/* login.css */
+/* congee_form.css */
 
 *,
 *:before,
@@ -11,7 +11,7 @@ body {
   background-color: #fcf9f7;
 }
 
-h1.h3 {
+h1.h1 {
   color: #000000;
 }
 
@@ -29,17 +29,14 @@ h1.h4 {
 }
 
 form {
-  height: 520px;
-  width: 400px;
+  height: 1000px;
+  width: 600px;
+  margin-top: 10rem;
   background-color: rgba(255, 255, 255, 0.13);
   position: absolute;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  --webkit-backdrop-filter: blur(10px) brightness(0.95) contrast(1);
-  border-radius: 10px;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
   padding: 50px 35px;
 }
 
@@ -58,7 +55,7 @@ form h3 {
 }
 
 label {
-  display: block;
+  display: none;
   margin-top: 30px;
   font-size: 16px;
   font-weight: 500;

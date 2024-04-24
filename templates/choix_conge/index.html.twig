@@ -1,0 +1,41 @@
+{# templates/choix_conge/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Congés{% endblock %}
+
+{% block body %}
+<h1>Gestion des Congés</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Employé</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Statut</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for conge in conges %}
+            <tr>
+                <td>{{ conge.id }}</td>
+                <td>{{ conge.user.nom }}</td>
+                <td>{{ conge.user.prenom }}</td>
+                <td>{{ conge.dateDebut|date('Y-m-d') }}</td>
+                <td>{{ conge.dateFin|date('Y-m-d') }}</td>
+                <td>{{ conge.status() }}</td>
+                <td>
+                    {% if is_granted('ROLE_RH') or is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('accepter_conge', {'id': conge.id}) }}" class="btn btn-success">Accepter</a>
+                            <a href="{{ path('refuser_conge', {'id': conge.id}) }}" class="btn btn-danger">Refuser</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
