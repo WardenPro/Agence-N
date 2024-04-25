@@ -13,9 +13,7 @@ use App\Entity\Conge;
 
 class ChoixCongeController extends AbstractController
 {
-      /**
-     * @Route("/choix-conge", name="choix_conge")
-     */
+
     #[Route('/choix_conge', name: 'choix_conge')]
     public function index(CongeRepository $congeRepository): Response
     {

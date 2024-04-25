@@ -1,64 +1,72 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New ListeFrais{% endblock %}
+{% block title %}Note de frais{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('styles/conge_form.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/listefrais.css') }}">
 {% endblock %}
 
 {% block body %}
-
+<div class="container">
+    <br>
     {{ form_start(form) }}
     <div class="text-center">
-        <h1 class="h1 mb-3 font-weight-normal color = ''">Créer Ligne de Frais</h1>
+        <h1 class="h1 mb-3 font-weight-normal color = ''">Créer Note de Frais</h1>
     </div>
-    <div class="form-group">
-        <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Date</h1>
-        {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Date</h1>
+                {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Equipement</h1>
+                {{ form_widget(form.equipement, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Repas</h1>
+                {{ form_widget(form.repas, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">TVA</h1>
+                {{ form_widget(form.TVA, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Debut Km</h1>
+                {{ form_widget(form.debut_km, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Fin Km</h1>
+                {{ form_widget(form.fin_km, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Description</h1>
+                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Missions</h1>
+                {{ form_widget(form.missions, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Divers</h1>
+                {{ form_widget(form.divers, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Montant Total</h1>
+                {{ form_widget(form.montant_total, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Forfait Kilometrique</h1>
+                {{ form_widget(form.forfait_kilometrique, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Description</h1>
-        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="form-group">
-        <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Equipement</h1>
-        {{ form_widget(form.equipement, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="form-group">
-        <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Missions</h1>
-        {{ form_widget(form.missions, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="form-group">
-        <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Repas</h1>
-        {{ form_widget(form.repas, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="form-group">
-        <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Divers</h1>
-        {{ form_widget(form.divers, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="form-group">
-        <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">TVA</h1>
-        {{ form_widget(form.TVA, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="form-group">
-        <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Debut_km</h1>
-        {{ form_widget(form.debut_km, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="form-group">
-        <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Fin_km</h1>
-        {{ form_widget(form.fin_km, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="form-group">
-        <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Montant_total</h1>
-        {{ form_widget(form.montant_total, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="form-group">
-        <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Forfait_kilometrique</h1>
-        {{ form_widget(form.forfait_kilometrique, {'attr': {'class': 'form-control'}}) }}
-    </div>
+
     <button class="btn btn-primary button">Envoyer</button>
     {{ form_end(form) }}
-
-    <a href="{{ path('app_liste_frais_index') }}">back to list</a>
+</div>
 {% endblock %}

@@ -30,7 +30,22 @@ class CongeType extends AbstractType
         $user = $this->security->getUser();
 
         $builder
-            ->add('mois', TextType::class, [
+            ->add('mois', ChoiceType::class, [
+                'choices'  => [
+                    'Janvier' => 'janvier',
+                    'Février' => 'février',
+                    'Mars' => 'mars',
+                    'Avril' => 'avril',
+                    'Mai' => 'mai',
+                    'Juin' => 'juin',
+                    'Juillet' => 'juillet',
+                    'Août' => 'août',
+                    'Septembre' => 'septembre',
+                    'Octobre' => 'octobre',
+                    'Novembre' => 'novembre',
+                    'Décembre' => 'decembre'
+                    // Autres motifs
+                ],
                 'attr' => ['class' => 'form-control']
             ])
             ->add('motif', ChoiceType::class, [
@@ -54,6 +69,9 @@ class CongeType extends AbstractType
             ])
             ->add('nbjour', IntegerType::class, [
                 'attr' => ['class' => 'form-control']
+            ])
+            ->add('seen' , HiddenType::class, [
+                'data' => 0
             ]);
     }
 

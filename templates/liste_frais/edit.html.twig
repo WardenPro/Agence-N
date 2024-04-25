@@ -4,10 +4,8 @@
 
 {% block body %}
     <h1>Edit ListeFrais</h1>
-
     {{ include('liste_frais/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_liste_frais_index') }}">back to list</a>
-
+    <a href="{{ path('app_liste_frais_index', {'noteId': noteId}) }}">back to list</a>
     {{ include('liste_frais/_delete_form.html.twig') }}
 {% endblock %}
+

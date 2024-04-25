@@ -33,7 +33,10 @@
     </div>
     <div class="form-group">
         <h1 class="h4 mb-2 mt-2 font-weight-normal color = ''">Nombres de Jour</h1>
-        {{ form_row(form.nbjour) }}
+        {{ form_widget(form.nbjour) }}
+        {% if form.nbjour.vars.errors | length > 0 %}
+        <h1 class="h4 mb-2 mt-2 font-weight-normal text-danger">{{ form.nbjour.vars.errors.0.message }}</h1>
+        {% endif %}
     </div>
     <button class="btn btn-primary button">Envoyer</button>
 {{ form_end(form) }}

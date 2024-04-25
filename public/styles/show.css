@@ -1,0 +1,39 @@
+/* page-content.css */
+
+/* Ajoutez ici les styles spécifiques pour le contenu de la page */
+h1 {
+    text-align: center;
+    font-size: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.table td {
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    color: #0056b3;
+}

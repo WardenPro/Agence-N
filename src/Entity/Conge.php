@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\CongeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: CongeRepository::class)]
 class Conge
 {
@@ -27,6 +27,7 @@ class Conge
     private ?string $motif = null;
 
     #[ORM\Column]
+    #[Assert\GreaterThan(value: 0, message: 'Le nombre de jours doit être supérieur à 0.')]
     private ?int $nbjour = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -35,6 +36,10 @@ class Conge
     #[ORM\ManyToOne(inversedBy: 'DemandesConge')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $seen = null;
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -123,6 +128,18 @@ class Conge
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function isSeen(): ?bool
+    {
+        return $this->seen;
+    }
+
+    public function setSeen(bool $seen): static
+    {
+        $this->seen = $seen;
 
         return $this;
     }
