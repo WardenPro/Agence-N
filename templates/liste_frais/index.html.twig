@@ -40,8 +40,8 @@
                     <td>{{ liste_frai.montantTotal }}</td>
                     <td>{{ liste_frai.forfaitKilometrique }}</td>
                     <td>
-                        <a href="{{ path('app_liste_frais_show', {'id': liste_frai.id}) }}" class="btn btn-primary">Show</a>
-                        <a href="{{ path('app_liste_frais_edit', {'id': liste_frai.id}) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ path('app_liste_frais_show', {'id': liste_frai.id, 'noteId': noteId}) }}" class="btn btn-primary">Show</a>
+                        <a href="{{ path('app_liste_frais_edit', {'id': liste_frai.id, 'noteId': noteId}) }}" class="btn btn-warning">Edit</a>
                     </td>
                 </tr>
             {% else %}
@@ -53,5 +53,5 @@
         </table>
     </div>
 
-    <a href="{{ path('app_liste_frais_new') }}" class="btn btn-success">Create new</a>
-{% endblock %}
+    <a href="{{ path('app_liste_frais_new', {'noteId': noteId}) }}" class="btn btn-success">Create new</a>
+    {% endblock %}

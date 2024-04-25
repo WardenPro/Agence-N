@@ -1,4 +1,5 @@
 
+
 form {
   max-width: 400px;
   margin: 50px auto;
@@ -21,7 +22,7 @@ textarea {
   box-sizing: border-box;
 }
 
-/* Style du bouton spécifique */
+
 button.bout-specific {
   display: block;
   width: 100%;

@@ -47,6 +47,10 @@ class ListeFrais
     #[ORM\Column]
     private ?int $forfait_kilometrique = null;
 
+    #[ORM\ManyToOne(inversedBy: 'NoteFrais')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Frais $frais = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -180,6 +184,18 @@ class ListeFrais
     public function setForfaitKilometrique(int $forfait_kilometrique): static
     {
         $this->forfait_kilometrique = $forfait_kilometrique;
+
+        return $this;
+    }
+
+    public function getFrais(): ?Frais
+    {
+        return $this->frais;
+    }
+
+    public function setFrais(?Frais $frais): static
+    {
+        $this->frais = $frais;
 
         return $this;
     }
