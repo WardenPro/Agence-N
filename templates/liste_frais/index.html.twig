@@ -3,55 +3,57 @@
 {% block title %}ListeFrais index{% endblock %}
 
 {% block body %}
-    <h1>Liste Frais</h1>
+    <div class="container">
+        <h1 class="my-4">Liste Frais</h1>
 
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Equipement</th>
-                    <th>Missions</th>
-                    <th>Repas</th>
-                    <th>Divers</th>
-                    <th>TVA</th>
-                    <th>Debut Km</th>
-                    <th>Fin Km</th>
-                    <th>Montant Total</th>
-                    <th>Forfait Kilometrique</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for liste_frai in liste_frais %}
-                <tr>
-                    <td>{{ liste_frai.id }}</td>
-                    <td>{{ liste_frai.date ? liste_frai.date|date('Y-m-d') : '' }}</td>
-                    <td>{{ liste_frai.description }}</td>
-                    <td>{{ liste_frai.equipement }}</td>
-                    <td>{{ liste_frai.missions }}</td>
-                    <td>{{ liste_frai.repas }}</td>
-                    <td>{{ liste_frai.divers }}</td>
-                    <td>{{ liste_frai.TVA }}</td>
-                    <td>{{ liste_frai.debutKm }}</td>
-                    <td>{{ liste_frai.finKm }}</td>
-                    <td>{{ liste_frai.montantTotal }}</td>
-                    <td>{{ liste_frai.forfaitKilometrique }}</td>
-                    <td>
-                        <a href="{{ path('app_liste_frais_show', {'id': liste_frai.id, 'noteId': noteId}) }}" class="btn btn-primary">Show</a>
-                        <a href="{{ path('app_liste_frais_edit', {'id': liste_frai.id, 'noteId': noteId}) }}" class="btn btn-warning">Edit</a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="13" class="text-center">No records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table id="TableListeDeFrais" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Equipement</th>
+                        <th>Missions</th>
+                        <th>Repas</th>
+                        <th>Divers</th>
+                        <th>TVA</th>
+                        <th>Debut Km</th>
+                        <th>Fin Km</th>
+                        <th>Montant Total Kilometrique</th>
+                        <th>Forfait Kilometrique</th>
+                        <th class="exclude-from-excel">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for liste_frai in liste_frais %}
+                        <tr>
+                            <td>{{ liste_frai.id }}</td>
+                            <td>{{ liste_frai.date ? liste_frai.date|date('Y-m-d') : '' }}</td>
+                            <td>{{ liste_frai.description }}</td>
+                            <td>{{ liste_frai.equipement }}</td>
+                            <td>{{ liste_frai.missions }}</td>
+                            <td>{{ liste_frai.repas }}</td>
+                            <td>{{ liste_frai.divers }}</td>
+                            <td>{{ liste_frai.TVA }}</td>
+                            <td>{{ liste_frai.debutKm }}</td>
+                            <td>{{ liste_frai.finKm }}</td>
+                            <td>{{ liste_frai.montantTotal }}</td>
+                            <td>{{ liste_frai.forfaitKilometrique }}</td>
+                            <td class="exclude-from-excel">
+                                <a href="{{ path('app_liste_frais_show', {'id': liste_frai.id, 'noteId': noteId}) }}" class="btn btn-primary">Show</a>
+                                <a href="{{ path('app_liste_frais_edit', {'id': liste_frai.id, 'noteId': noteId}) }}" class="btn btn-warning">Edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="13" class="text-center">No records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <a href="{{ path('app_liste_frais_new', {'noteId': noteId}) }}" class="btn btn-success">Create new</a>
     </div>
-
-   <a href="{{ path('app_liste_frais_new', {'noteId': noteId}) }}" class="btn btn-success">Create new</a>
-    {% endblock %}
+{% endblock %}

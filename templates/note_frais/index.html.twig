@@ -15,8 +15,10 @@
                     <th scope="col">Service</th>
                     <th scope="col">Période</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Total</th>
+                    <th scope="col">Montant Total de votre note de frais</th>
                     <th class="exclude-from-excel" scope="col">Actions</th>
+                    <!-- Ajouter une colonne pour le bouton "Voir Liste de Frais" -->
+                    <th class="exclude-from-excel" scope="col">Liste de Frais</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,18 +35,21 @@
                         <a href="{{ path('app_note_frais_edit', {'id': frai.id}) }}" class="btn btn-warning btn-sm">Edit</a>
                         <a href="{{ path('app_liste_frais_new', {'noteId': frai.id}) }}" class="btn btn-success btn-sm">Ajouter Liste Frais</a>
                     </td>
+                    <!-- Bouton "Voir Liste de Frais" -->
+                    <td class="exclude-from-excel">
+                        <a href="{{ path('app_liste_frais_index', {'noteId': frai.id}) }}" class="btn btn-info btn-sm">Voir Liste de Frais</a>
+                    </td>
                 </tr>
                 {% else %}
                 <tr>
-                    <td colspan="7" class="text-center">No records found</td>
+                    <td colspan="8" class="text-center">No records found</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-
     <a href="{{ path('app_note_frais_new') }}" class="btn btn-success">Create new</a>
-    <button onclick="downloadExcel('MyTable', 'note_de_frais_data.xlsx')" class="btn btn-primary">Download Excel</button>
+    <button onclick="downloadExcel('MyTable', 'note_de_frais_data.xlsx');" class="btn btn-primary">Download Excel</button>
 </div>
 <script src="{{ asset('js/excel.js') }}"></script>
 {% endblock %}

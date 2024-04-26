@@ -47,6 +47,8 @@ class ListeFrais1Type extends AbstractType
                 'attr' => ['class' => 'form-control']
             ])
             ->add('forfait_kilometrique', TextType::class, [
+                'disabled' => true, 
+                'required' => false, 
                 'attr' => ['class' => 'form-control']
             ]);
     }
