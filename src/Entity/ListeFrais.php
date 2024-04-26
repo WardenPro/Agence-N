@@ -44,8 +44,9 @@ class ListeFrais
     #[ORM\Column]
     private ?int $montant_total = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $forfait_kilometrique = null;
+    
 
     #[ORM\ManyToOne(inversedBy: 'NoteFrais')]
     #[ORM\JoinColumn(nullable: false)]

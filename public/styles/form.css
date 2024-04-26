@@ -1,5 +1,69 @@
+/* Style général du formulaire */
+form {
+  max-width: 30em;
+  margin: 1em auto; /* Réduire la marge */
+  padding: 1em; /* Réduire le padding */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 0.5em;
+}
+
+/* Style pour les champs de formulaire */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 0.5em;
+  margin-top: 0.5em; /* Réduire l'espace au-dessus */
+  margin-bottom: 0.5em; /* Réduire l'espace en dessous */
+  border: 1px solid #ccc;
+  border-radius: 0.3em;
+  box-sizing: border-box;
+}
+
+/* Style pour le bouton de soumission */
+button.btn-specific {
+  display: block;
+  width: 100%;
+  padding: 1em;
+  margin-top: 1em; /* Réduire l'espace au-dessus */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.3em;
+  cursor: pointer;
+}
+
+button.btn-specific:hover {
+  background-color: #0056b3;
+}
+
+/* Style pour le titre */
+h1 {
+  font-size: 2em;
+  text-align: center;
+  margin-top: 0.5em; /* Réduire l'espace au-dessus */
+}
+
+/* Style pour la classe 'bout' */
+div.bout {
+  text-align: center;
+  margin-top: 1em; /* Réduire l'espace au-dessus */
+}
+
+/* Style pour le bouton dans la classe 'bout' */
+div.bout button.btn-specific {
+  display: inline-block;
+  padding: 1em 2em;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+}
 
 
+
+
+/*
 form {
   max-width: 30em; 
   margin: 2em auto; 
@@ -21,7 +85,7 @@ textarea {
   box-sizing: border-box;
 }
 
-/* Style du bouton */
+
 button.btn-specific {
   display: block;
   width: 100%;
@@ -38,25 +102,24 @@ button.btn-specific:hover {
   background-color: #0056b3;
 }
 
-/* Style pour le rôle */
 h1 {
-  font-size: 2em; /* Taille du titre */
-  text-align: center; /* Centrage du texte */
-  margin-top: 1em; /* 20px */
+  font-size: 2em; 
+  text-align: center; 
+  margin-top: 1em; 
 }
 
-/* Style pour la classe 'bout' */
+
 div.bout {
-  text-align: center; /* Centrage du contenu */
-  margin-top: 2em; /* 20px */
+  text-align: center; 
+  margin-top: 2em; 
 }
 
-/* Style pour le bouton dans la classe 'bout' */
+
 div.bout button.btn-specific {
-  display: inline-block; /* Affichage en ligne */
-  padding: 1em 2em; /* 10px 20px */
-  border: 2px solid #007bff; /* Bordure */
-  border-radius: 5px; /* 5px */
+  display: inline-block; 
+  padding: 1em 2em; 
+  border: 2px solid #007bff; 
+  border-radius: 5px; 
 }
 
 
@@ -72,8 +135,8 @@ div.bout button.btn-specific {
 
 
 
-
-/*form {
+/*
+form {
   max-width: 400px;
   margin: 50px auto;
   padding: 20px;
