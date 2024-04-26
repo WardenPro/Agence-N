@@ -36,7 +36,30 @@ voici les liens disponibles pour un "admin" :
 PREPARATION DU PROJET :
  
 - executer "composer install"
+- executer "composer require --dev doctrine/doctrine-fixtures-bundle"
 - executer "php bin/console doctrine:database:create"
 - executer "php bin/console doctrine:migrations:migrate"
 
+ETAPES A FAIRE AVANT DE POURSUIVRE
+ 
+- dans le fichier "src/DataFixtures/AppFixtures.php"
+ 
+        $user = new User();
+        $user->setEmail('admin@admin.com');
+        $user->setRoles(['ROLE_ADMIN']); // Assurez-vous d'utiliser le bon rôle
+        $user->setNom('admin');
+        $user->setPrenom('Administrateur');
+        $encodedPassword = $this->hasher->hashPassword($user, 'admin123');
+        $user->setPassword($encodedPassword);
+ 
+        $manager->persist($user);
+        $manager->flush();
+    
+ 
+A vous de modifier "admin@admin.com" en tant qu'username a votre guise, il sera créer instantanément et sera définitif.
+A vous aussi de modifier "admin123" qui correspond au password.
 Si aucun changement n'est effectué
+
+- executer "php bin/console doctrine:fixtures:load"
+
+:warning: **If you say yes in the next question it will purge the db you will lost everything **: Be very careful here!
