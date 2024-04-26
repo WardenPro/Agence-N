@@ -52,9 +52,9 @@ class CongeType extends AbstractType
                 'choices'  => [
                     '-' => 'None',
                     'Absence Maladie' => 'Absence Maladie',
-                    'Congée Payer' => 'Congée payer',
+                    'Congé Payé' => 'Congé Payé',
                     'Absence Congés Spéciaux' => 'Absence Congés Spéciaux',
-                    'Congés non Payes' => 'Congés non Payes',
+                    'Congés non Payés' => 'Congés non Payés',
                     // Autres motifs
                 ],
                 'attr' => ['class' => 'form-control']
