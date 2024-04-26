@@ -4,10 +4,10 @@
 
 {% block body %}
 <div class="container">
-    <h1 class="my-4">Frais index</h1>
+    <h1 class="my-4">Note de Frais</h1>
 
     <div class="table-responsive">
-        <table class="table table-striped">
+        <table id="MyTable" class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">Id</th>
@@ -16,7 +16,7 @@
                     <th scope="col">Période</th>
                     <th scope="col">Status</th>
                     <th scope="col">Total</th>
-                    <th scope="col">Actions</th>
+                    <th class="exclude-from-excel" scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,12 +28,10 @@
                     <td>{{ frai.periode ? frai.periode|date('Y-m-d') : '' }}</td>
                     <td>{{ frai.status }}</td>
                     <td>{{ frai.total }}</td>
-                    <td>
+                    <td class="exclude-from-excel">
                         <a href="{{ path('app_note_frais_show', {'id': frai.id}) }}" class="btn btn-primary btn-sm">Show</a>
                         <a href="{{ path('app_note_frais_edit', {'id': frai.id}) }}" class="btn btn-warning btn-sm">Edit</a>
-                    </td>
-                    <td>
-                        <a href="{{ path('app_liste_frais_new', {'noteId': frai.id}) }}" class="btn btn-success btn-sm">Ajouter Liste Frais</a> <!-- Lien pour ajouter une liste de frais -->
+                        <a href="{{ path('app_liste_frais_new', {'noteId': frai.id}) }}" class="btn btn-success btn-sm">Ajouter Liste Frais</a>
                     </td>
                 </tr>
                 {% else %}
@@ -46,5 +44,7 @@
     </div>
 
     <a href="{{ path('app_note_frais_new') }}" class="btn btn-success">Create new</a>
+    <button onclick="downloadExcel('MyTable', 'note_de_frais_data.xlsx')" class="btn btn-primary">Download Excel</button>
 </div>
+<script src="{{ asset('js/excel.js') }}"></script>
 {% endblock %}

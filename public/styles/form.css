@@ -1,6 +1,79 @@
 
 
 form {
+  max-width: 30em; 
+  margin: 2em auto; 
+  padding: 2em;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 0.5em; 
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 0.5em; 
+  margin-top: 1em; 
+  border: 1px solid #ccc;
+  border-radius: 0.3em; 
+  box-sizing: border-box;
+}
+
+/* Style du bouton */
+button.btn-specific {
+  display: block;
+  width: 100%;
+  padding: 1em 1em; 
+  margin-top: 2em; 
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.3em; 
+  cursor: pointer;
+}
+
+button.btn-specific:hover {
+  background-color: #0056b3;
+}
+
+/* Style pour le rôle */
+h1 {
+  font-size: 2em; /* Taille du titre */
+  text-align: center; /* Centrage du texte */
+  margin-top: 1em; /* 20px */
+}
+
+/* Style pour la classe 'bout' */
+div.bout {
+  text-align: center; /* Centrage du contenu */
+  margin-top: 2em; /* 20px */
+}
+
+/* Style pour le bouton dans la classe 'bout' */
+div.bout button.btn-specific {
+  display: inline-block; /* Affichage en ligne */
+  padding: 1em 2em; /* 10px 20px */
+  border: 2px solid #007bff; /* Bordure */
+  border-radius: 5px; /* 5px */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*form {
   max-width: 400px;
   margin: 50px auto;
   padding: 20px;
@@ -51,3 +124,4 @@ div.bout button.bout-specific {
   border: 2px solid #007bff;
   border-radius: 5px;
 }
+*\

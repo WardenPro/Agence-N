@@ -1,0 +1,42 @@
+/* CSS pour styliser le formulaire Twig */
+
+/* Style du formulaire */
+form {
+    max-width: 25em; /* 400px */
+    margin: 0 auto;
+    padding: 1.25em; /* 20px */
+    background-color: #f9f9f9;
+    border: 0.0625em solid #ddd; /* 1px */
+    border-radius: 0.3125em; /* 5px */
+}
+
+/* Style des éléments de formulaire */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 0.625em; /* 10px */
+    margin-top: 0.5em;
+    border: 0.0625em solid #ccc; /* 1px */
+    border-radius: 0.1875em; /* 3px */
+    box-sizing: border-box;
+}
+
+/* Style du bouton */
+.custom-button-container {
+    display: block;
+    width: 100%;
+    padding: 0.625em; /* 10px */
+    margin-top: 1.25em; /* 20px */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0.1875em; /* 3px */
+    cursor: pointer;
+}
+
+button.btn:hover {
+    width: 100%;
+    background-color: #0056b3;
+}

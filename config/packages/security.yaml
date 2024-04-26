@@ -35,6 +35,10 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: /user, roles: ROLE_ADMIN}
+        - { path: /choix_frais, roles: ROLE_USER}
+        - { path: /notification/mark-as-seen, roles: ROLE_USER}
+        - { path: /choix_conge, roles: ROLE_USER}
+        - { path: /note, roles: ROLE_USER}
         - { path: /note_frais, roles: [ROLE_ADMIN, ROLE_ADMIN, ROLE_USER]}
         - { path: /mes_conges, roles: [ROLE_ADMIN, ROLE_USER, ROLE_COMPTA, ROLE_RH]}
         - { path: /demande_conge, roles: [ROLE_ADMIN, ROLE_USER, ROLE_COMPTA, ROLE_RH]}

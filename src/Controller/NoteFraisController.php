@@ -14,11 +14,20 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/note/frais')]
 class NoteFraisController extends AbstractController
 {
+    
     #[Route('/', name: 'app_note_frais_index', methods: ['GET'])]
     public function index(FraisRepository $fraisRepository): Response
     {
+        $user = $this->getUser();
+        
+        if (!$user) {
+            return $this->render('login/index.html.twig');
+        }
+
+        $frais = $fraisRepository->findBy(['user' => $user]);
+        
         return $this->render('note_frais/index.html.twig', [
-            'frais' => $fraisRepository->findAll(),
+            'frais' => $frais,
         ]);
     }
 
