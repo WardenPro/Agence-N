@@ -62,4 +62,4 @@ Si aucun changement n'est effectué
 
 - executer "php bin/console doctrine:fixtures:load"
 
-:warning: **If you say yes in the next question it will purge the db you will lost everything**: Be very careful here!
+:warning: **si vous accepter la prochaine question que fixtures pose la base de donnée sera purger et vous perdrez tout**: Faite très attention!
