@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}ListeFrais{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/show_1.css') }}">
+{% endblock %}
+
 
 {% block body %}
     <h1>ListeFrais</h1>

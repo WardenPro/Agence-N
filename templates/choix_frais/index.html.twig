@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des notes de frais{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="my-4">Liste des notes de frais</h1>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Montant</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for note_frais in notes_frais %}
+                    <tr>
+                        <td>{{ note_frais.id }}</td>
+                        <td>{{ note_frais.periode|date('d/m/Y') }}</td>
+                        <td>{{ note_frais.total }}</td>
+                        <td>{{ note_frais.status }}</td>
+                        <td>
+                            {% if is_granted('ROLE_RH') or is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('valider_note_frais', {'id': note_frais.id}) }}"class="btn btn-success btn-sm">Valider</a>
+                                <a href="{{ path('refuser_note_frais', {'id': note_frais.id}) }}"class="btn btn-danger btn-sm">Refuser</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center">Aucune note de frais trouvée</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

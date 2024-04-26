@@ -3,7 +3,7 @@
 {% block title %}ListeFrais index{% endblock %}
 
 {% block body %}
-    <h1>ListeFrais index</h1>
+    <h1>Liste Frais</h1>
 
     <div class="table-responsive">
         <table class="table table-striped">
@@ -53,5 +53,5 @@
         </table>
     </div>
 
-    <a href="{{ path('app_liste_frais_new', {'noteId': noteId}) }}" class="btn btn-success">Create new</a>
+   <a href="{{ path('app_liste_frais_new', {'noteId': noteId}) }}" class="btn btn-success">Create new</a>
     {% endblock %}

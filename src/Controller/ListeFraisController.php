@@ -5,13 +5,15 @@ namespace App\Controller;
 use App\Entity\Frais;
 use App\Entity\ListeFrais;
 use App\Form\ListeFrais1Type;
+use App\Repository\FraisRepository;
 use App\Repository\ListeFraisRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\FraisRepository;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 #[Route('/note/{noteId}/liste/frais')]
 class ListeFraisController extends AbstractController
@@ -23,10 +25,12 @@ class ListeFraisController extends AbstractController
         $this->entityManager = $entityManager;
     }
     #[Route('/', name: 'app_liste_frais_index', methods: ['GET'])]
-    public function index(int $noteId, ListeFraisRepository $listeFraisRepository): Response
+    public function index(int $noteId, ListeFraisRepository $listeFraisRepository, UserInterface $user): Response
     {
+        $liste_frais = $listeFraisRepository->findBy(['frais' => $noteId]);
+
         return $this->render('liste_frais/index.html.twig', [
-            'liste_frais' => $listeFraisRepository->findAll(),
+            'liste_frais' => $liste_frais,
             'noteId' => $noteId
         ]);
     }

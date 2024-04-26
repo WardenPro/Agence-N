@@ -58,8 +58,8 @@ class CongeController extends AbstractController
                 ->setParameter('status', ['accepté', 'refusé'])
                 ->getQuery()
                 ->getSingleScalarResult();
-    
-            return new JsonResponse(['count' => $count]);
+                
+            return new JsonResponse(['count' => $count], 200);
         }
     
         return new JsonResponse(['count' => 0]);
