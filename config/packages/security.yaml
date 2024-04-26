@@ -39,7 +39,7 @@ security:
         - { path: /notification/mark-as-seen, roles: ROLE_USER}
         - { path: /choix_conge, roles: ROLE_USER}
         - { path: /note, roles: ROLE_USER}
-        - { path: /note_frais, roles: [ROLE_ADMIN, ROLE_ADMIN, ROLE_USER]}
+        - { path: /note/frais, roles: [ROLE_ADMIN, ROLE_COMPTA, ROLE_USER]}
         - { path: /mes_conges, roles: [ROLE_ADMIN, ROLE_USER, ROLE_COMPTA, ROLE_RH]}
         - { path: /demande_conge, roles: [ROLE_ADMIN, ROLE_USER, ROLE_COMPTA, ROLE_RH]}
         # - { path: ^/admin, roles: ROLE_ADMIN }
