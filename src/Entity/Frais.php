@@ -46,6 +46,7 @@ class Frais
     public function __construct()
     {
         $this->NoteFrais = new ArrayCollection();
+        $this->status = 'En attente';
     }
 
     public function getId(): ?int
