@@ -21,11 +21,7 @@ services:
     networks:
       - singe
   www:
-    build:
-      context: .
-      dockerfile: php/Dockerfile
-      args:
-        TIMEZONE: "Europe/Paris"
+    image: warden696/php:fpm-alpine3.20-latest
     ports:
       - "8081:8000"
     volumes:
