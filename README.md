@@ -1,100 +1,153 @@
-INSTRUCTION :
+
+# Agence N - Gestion des Notes de Frais et des Demandes de Congés
+
+### Workshop - du 22/04/24 au 26/04/24
+
+---
+
+## Cahier des Charges
+
+**Objet :**  
+L'agence N souhaite numériser son système de gestion des notes de frais et des demandes de congés. Actuellement, cette gestion est réalisée via des documents *Excel* ou *Word* envoyés par email aux services concernés. L'objectif est de créer une plateforme où chaque employé pourra se connecter pour remplir des formulaires numériques, remplaçant ainsi les documents actuels.
+
+### Fonctionnalités Principales
+
+- **Gestion des Formulaires** : Chaque employé peut remplir et soumettre des formulaires de notes de frais et de demandes de congés via la plateforme.
+- **Conservation des Données** : Les données collectées sont stockées dans une base de données et transmises aux services concernés via des notifications.
+- **Consultation et Validation** : Les demandes peuvent être consultées, validées ou refusées par les services habilités (RH, Secrétariat).
+- **Notifications** : Les expéditeurs des demandes reçoivent une notification pour connaître le statut de leur demande (validée ou refusée).
+- **Export des Données** : Les demandes peuvent être exportées sous forme de tableau récapitulatif au format *Excel*.
+- **Gestion des Rôles** : Accès sécurisé avec des rôles différents (visiteur, compta, RH, admin) pour accéder aux fonctionnalités spécifiques.
+
+---
+
+## Accès et Liens Disponibles
+
+### Liens pour un "Visiteur"
+
+- **/index** : Page d'accueil.
+
+### Liens pour un "Compta"
+
+- **/demande_conge** : Panneau des demandes de congés.
+- **/mes_conge** : Informations sur les congés personnels.
+- **/frais** : Informations concernant les frais.
+
+### Liens pour un "RH"
+
+- **/demande_conge** : Panneau des demandes de congés.
+- **/mes_conge** : Informations sur les congés personnels.
+- **/choix_conge** : Acceptation ou refus des demandes de congés.
+- **/frais** : Informations concernant les frais.
+
+### Liens pour un "Admin"
+
+- **/login** : Connexion en tant qu'admin.
+- **/all** : Accès illimité à toutes les ressources de l'application.
+
+---
+
+## Préparation du Projet
+
+### Sans Docker
+
+1. Installer les dépendances :  
+   ```bash
+   composer install
+   ```
+
+2. Installer le bundle `doctrine/doctrine-fixtures-bundle` :  
+   ```bash
+   composer require --dev doctrine/doctrine-fixtures-bundle
+   ```
+
+3. Créer la base de données :  
+   ```bash
+   php bin/console doctrine:database:create
+   ```
+
+4. Exécuter les migrations :  
+   ```bash
+   php bin/console doctrine:migrations:migrate
+   ```
+
+### Avec Docker
+
+1. Construire les services :  
+   ```bash
+   docker compose build
+   ```
+
+2. Démarrer les services :  
+   ```bash
+   docker compose up -d
+   ```
+
+3. Exécuter le script d'initialisation :  
+   ```bash
+   docker exec -it [nom_du_conteneur_php probably agence-n-www-1] bash /var/www/symfony/init.sh
+   ```
+
+4. Lancer le serveur Symfony :  
+   ```bash
+   php -S 0.0.0.0:8000 -t public
+   ```
+
+---
+
+## Étapes Préliminaires
+
+### Configuration des Fixtures
+
+Avant de charger les fixtures, modifiez le fichier `src/DataFixtures/AppFixtures.php` :
+
+```php
+$user = new User();
+$user->setEmail('admin@admin.com');
+$user->setRoles(['ROLE_ADMIN']); // Assurez-vous d'utiliser le bon rôle
+$user->setNom('admin');
+$user->setPrenom('Administrateur');
+$encodedPassword = $this->hasher->hashPassword($user, 'admin123');
+$user->setPassword($encodedPassword);
+
+$manager->persist($user);
+$manager->flush();
+```
+
+Vous pouvez personnaliser les champs suivants :
+
+- **Email** : Changez `'admin@admin.com'` par l'email de votre choix.
+- **Mot de Passe** : Changez `'admin123'` par le mot de passe souhaité.
+
+### Chargement des Fixtures
+
+1. Chargez les fixtures dans la base de données :  
+   ```bash
+   php bin/console doctrine:fixtures:load
+   ```
+
+   **Attention :** Répondre "yes" à la question suivante entraînera la purge de la base de données, ce qui supprimera toutes les données existantes. Soyez vigilant !
+
+---
+
+## Conclusion
+
+Ce projet est conçu pour fournir une interface intuitive et sécurisée pour la gestion des notes de frais et des demandes de congés au sein de l'agence N. L'accent a été mis sur l'expérience utilisateur et la facilité d'accès aux fonctionnalités essentielles.
+
+---
+
+**Note :** Aucun guide graphique n'est fourni, mais une attention particulière doit être portée à l'interface utilisateur pour garantir une expérience fluide et agréable.
+
+---
+
+## Annexes
+
+### Exemple de fichier : note de frais actuel
 
 ![Aspose Words 84a390af-7f09-44af-b464-a021fe3528bb 001](https://github.com/WardenPro/Agence-N/assets/45292453/a9aabcda-616a-407e-96ad-72ef93b13d50)
 
-
-Ecole 89
-
-Workshop – du 22/04/24 au 26/04/24
-
-Cahier des charges : Agence N
-
-Objet : Traitement des notes de frais et demandes de congés
-
-L’agence N. souhaite numériser son système de gestion de notes de frais et de demandes de congés.
-
-Actuellement, cette gestion se fait à travers des documents *excel* ou *word* envoyés par mail aux services concernés. Vous trouverez en annexe un exemplaire de ces documents.
-
-L’objectif est de mettre à disposition de l’agence N. une plateforme sur laquelle chaque employé pourra se connecter et remplir directement des formulaires qui remplaceront ls documents *word* et *excel* actuels. Les données ainsi récoltées seront bien sûr conservées et trasmise aux services concernés via des notifications consultables sur la plateforme par les personnes habilitées.
-
-En effet toutes ces demandes pourront être consultées par les employés habilités (en principe les services RH et secrétariat). Les demandes pourront alors être validées ou refussées : une notification sera alors envoyée aux expéditeurs des demandes pour leur signifier la réponse.
-
-Ces demandes seront présentées dans un format lisible, et pourront faire l’objet d’un export sous la forme d’un tableau récapitulatif au format *excel.* Une connexion sera bien sûr nécessaire pour accéder à ces fonctionnalités. Certaines personnes pourront aussi bénéficier d’un rôle plus avancé pour pouvoir supprimer ces données.
-
-Aucune charte graphique n’est fournie, mais le site devra faire l’objet d’un soin attentif en matière de visuel et d’expérience utilisateur.
-
-Annexes
-
-Le fichier : note de frais actuel
+### Exemple de fichier : demande de congés actuel
 
 ![Aspose Words 84a390af-7f09-44af-b464-a021fe3528bb 002](https://github.com/WardenPro/Agence-N/assets/45292453/e935fc0b-52ce-4e32-962b-7ef274c8e4a3)
 
-Le fichier demande de congés actuel
-
 ![Aspose Words 84a390af-7f09-44af-b464-a021fe3528bb 003](https://github.com/WardenPro/Agence-N/assets/45292453/303ef7ab-2896-4f51-b093-f17fd656add1)
-
-DESCRIPTIF :
- 
-Ce projet réalisé en symfony a pour but d'afficher un système de gestion de notes de frais et de demandes
-de congés :
-
-- Page de connection a différent degrés
-- Un formulaire : note de frais et demande de congé (données récoltées conservées
-transmise aux BDD concernées)
-- Notification au service RH / Compta et Validation
-- Notification expéditeur et reçu demande
-- Faire export d’un fichier html en excel (via une bibliothèque)
-- Faire quelque chose de lisible
-
- 
- 
-voici les liens disponibles pour un "visiteur" :
- 
-- (/index) => index
-
-voici les liens disponibles pour un "compta" :
-- (/demande_conge) => pannel demande de conge
-- (/mes_conge) => information sur les conges de la personne 
-- (frais) => information concernant les frais
-
-voici les liens disponibles pour un "RH" :
-- (/demande_conge) => pannel demande de conge
-- (/mes_conge) => information sur les conges de la personne
-- (/choix_conge) => accepter/refuser les congées
-- (frais) => information concernant les frais
-
-voici les liens disponibles pour un "admin" :
- 
-- (/login) => se connecter en admin
-- (all) => accès illimité a toute les ressources du webapp
- 
-PREPARATION DU PROJET :
- 
-- executer "composer install"
-- executer "composer require --dev doctrine/doctrine-fixtures-bundle"
-- executer "php bin/console doctrine:database:create"
-- executer "php bin/console doctrine:migrations:migrate"
-
-ETAPES A FAIRE AVANT DE POURSUIVRE
- 
-- dans le fichier "src/DataFixtures/AppFixtures.php"
- 
-        $user = new User();
-        $user->setEmail('admin@admin.com');
-        $user->setRoles(['ROLE_ADMIN']); // Assurez-vous d'utiliser le bon rôle
-        $user->setNom('admin');
-        $user->setPrenom('Administrateur');
-        $encodedPassword = $this->hasher->hashPassword($user, 'admin123');
-        $user->setPassword($encodedPassword);
- 
-        $manager->persist($user);
-        $manager->flush();
-    
- 
-A vous de modifier "admin@admin.com" en tant qu'username a votre guise, il sera créer instantanément et sera définitif.
-A vous aussi de modifier "admin123" qui correspond au password.
-Si aucun changement n'est effectué
-
-- executer "php bin/console doctrine:fixtures:load"
-
-:warning: **si vous dite yes à la prochaine question que fixtures pose la base de donnée sera purger et vous perdrez tout**: Faite très attention!
