@@ -1,37 +1,54 @@
-FROM php:8.2-fpm-buster
-ARG TIMEZONE
+FROM php:fpm-alpine3.20 AS builder
 
-COPY php/php.ini /usr/local/etc/php/conf.d/docker-php-config.ini
-
-RUN apt-get update && apt-get install -y \
+RUN apk --no-cache add \
     gnupg \
     g++ \
-    procps \
+    autoconf \
+    make \
+    zlib-dev \
+    libzip-dev \
+    freetype-dev \
+    libpng-dev \
+    jpeg-dev \
+    icu-dev \
+    oniguruma-dev \
+    libxslt-dev \
+    php-pear \
+    libxml2-dev \
+    curl-dev \
+    sqlite-dev
+
+RUN docker-php-ext-configure gd --with-jpeg --with-freetype && \
+    docker-php-ext-install -j$(nproc) pdo pdo_mysql zip xsl gd intl opcache exif mbstring
+
+RUN apk del gnupg g++ autoconf make
+
+FROM php:fpm-alpine3.20
+
+RUN apk --no-cache add \
+    libpng \
+    freetype \
+    libjpeg-turbo \
+    icu-libs \
+    libxslt \
+    libzip \
+    bash \
+    libc6-compat
+
+COPY php.ini /usr/local/etc/php/conf.d/docker-php-config.ini
+
+RUN apk --no-cache add \
+    sudo \
     openssl \
     git \
-    unzip \
-    zlib1g-dev \
-    libzip-dev \
-    libfreetype6-dev \
-    libpng-dev \
-    libjpeg-dev \
-    libicu-dev  \
-    libonig-dev \
-    libxslt1-dev \
-    acl \
-    && echo 'alias sf="php bin/console"' >> ~/.bashrc
+    unzip && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash && \
+    apk add symfony-cli
 
-RUN docker-php-ext-configure gd --with-jpeg --with-freetype 
+COPY --from=builder /usr/local/lib/php/extensions/no-debug-non-zts-20230831/ /usr/local/lib/php/extensions/no-debug-non-zts-20230831/
 
-RUN docker-php-ext-install \
-    pdo pdo_mysql zip xsl gd intl opcache exif mbstring
-
-RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} > /etc/timezone \
-    && printf '[PHP]\ndate.timezone = "%s"\n', ${TIMEZONE} > /usr/local/etc/php/conf.d/tzone.ini \
-    && "date"
-
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN curl -sS https://get.symfony.com/cli/installer | bash
+COPY --from=builder /usr/local/etc/php/conf.d/ /usr/local/etc/php/conf.d/
 
 COPY . /var/www/symfony
 WORKDIR /var/www/symfony
