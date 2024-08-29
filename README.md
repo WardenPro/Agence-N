@@ -47,6 +47,11 @@ L'agence N souhaite numériser son système de gestion des notes de frais et des
 
 ---
 
+> [!IMPORTANT]  
+> Changer le .env selon le mode choisi tel que
+> Sans Docker : DATABASE_URL="mysql://{USER}:{PASSWORD}@{DB IP}:3306/agence_n"
+> Avec Docker : DATABASE_URL="mysql://root:root@db:3306/agence_n"
+
 ## Préparation du Projet
 
 ### Sans Docker
